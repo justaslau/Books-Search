@@ -19,5 +19,5 @@ mongoose
 // Assign server PORT
 const port = process.env.PORT || 8000;
 
-// Open port for server
+// Opening port to start server
 app.listen(port, () => console.log(`Server is running on PORT ${port}`));
