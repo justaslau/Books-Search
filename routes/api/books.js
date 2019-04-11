@@ -13,17 +13,25 @@ router.get('/', (req, res) => {
 // @route   POST api/books
 // @desc    Add book to saved books collection
 router.post('/', (req, res) => {
-  const newBook = new Book({
-    title: req.body.title,
-    authors: req.body.authors,
-    description: req.body.desc,
-    image: req.body.image,
-    link: req.body.link
-  });
-
-  newBook
-    .save()
-    .then(book => res.json(book))
+  Book.findOne({ bookId: req.body.bookId })
+    .then(result => {
+      if (!result) {
+        const newBook = new Book({
+          bookId: req.body.bookId,
+          title: req.body.title,
+          authors: req.body.authors,
+          description: req.body.desc,
+          image: req.body.image,
+          link: req.body.link
+        });
+        newBook
+          .save()
+          .then(book => res.json({ status: 'completed' }))
+          .catch(err => console.log(err));
+      } else {
+        res.json({ status: 'duplicate' });
+      }
+    })
     .catch(err => console.log(err));
 });
 

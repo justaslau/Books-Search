@@ -68,7 +68,7 @@ class FindBook extends Component {
           <input
             type="submit"
             value="Find It!"
-            className="btn btn-light btn-block"
+            className="btn btn-light btn-block mb-4"
           />
         </form>
         {booksFound.length !== 0 ? <ListBooks booksArray={booksFound} /> : null}
